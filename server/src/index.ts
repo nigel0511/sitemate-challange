@@ -1,6 +1,7 @@
 // index.js
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const PORT = 3000;
 import issueRouter from "./routes/issuesRoute";
 
@@ -8,6 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // GET all issues
+app.use(cors());
 app.use("/api/issues", issueRouter);
 
 // Start the server
