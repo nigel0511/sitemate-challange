@@ -30,6 +30,7 @@ router.post("/", (req, res) => {
     title: req.body.title,
     description: req.body.description,
   };
+  console.log("Created New Issue:", JSON.stringify(newIssue));
   issues.push(newIssue);
   res.status(201).json(newIssue);
 });
@@ -41,6 +42,7 @@ router.put("/:id", (req, res) => {
 
   issue.title = req.body.title;
   issue.description = req.body.description;
+  console.log(`Updated Issue id${req.params.id}:`, JSON.stringify(issue));
   res.json(issue);
 });
 
@@ -48,6 +50,7 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   const issueIndex = issues.findIndex((i) => i.id === parseInt(req.params.id));
   if (issueIndex === -1) res.status(404).send("Issue not found");
+  console.log(`Deleted Issue id${req.params.id}`);
 
   issues.splice(issueIndex, 1);
   res.status(204).send();
